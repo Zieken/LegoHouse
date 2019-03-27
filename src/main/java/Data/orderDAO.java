@@ -5,8 +5,11 @@
  */
 package Data;
 
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,4 +43,89 @@ public class orderDAO
             ex.printStackTrace();
         }
     }
-}
+    
+    public static ArrayList<Order> getOrdersByUser(String username)
+    {
+        ArrayList<Order> orders = new ArrayList<>();
+        
+        int orderId = 0;
+        String username_ = "";
+        Date dateplaced = null;
+        String status = "";
+        
+        try
+        {
+            DBConnector con = new DBConnector();
+            Statement statement = con.getConnection().createStatement();
+            String query
+                    = "SELECT * "
+                    + "FROM orders "
+                    + "WHERE userName = '" + username + "' ORDER BY orderId DESC;";
+            ResultSet rs = statement.executeQuery(query);
+            
+            while (rs.next()) 
+            {
+                orderId = rs.getInt("orderId");
+                username_ = rs.getString("userName");
+                dateplaced = rs.getDate("datePlaced");
+                status = rs.getNString("status");
+                orders.add(new Order(orderId, username, dateplaced, status));
+            }
+        
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(orderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return orders;
+    }
+    
+    public static OrderDetails getOrderDetailsById(int id)
+    {
+        OrderDetails details = null;
+        
+        int orderId = 0;
+        String username = "";
+        int width = 0;
+        int length = 0;
+        int height = 0;
+        int amountOfBigBricks = 0;
+        int amountOfMediumBricks = 0;
+        int amountOfSmallBricks = 0;
+        int numberOfDoors = 0;
+        int numberOfWindows = 0;
+        int price = 0;
+        
+        try
+        {
+            DBConnector con = new DBConnector();
+            Statement statement = con.getConnection().createStatement();
+            String query
+                    = "SELECT * "
+                    + "FROM orderdetails "
+                    + "WHERE orderId = '" + id + "';";
+            ResultSet rs = statement.executeQuery(query);
+            
+            while (rs.next()) 
+            {
+                orderId = rs.getInt("orderId");
+                username = rs.getString("username");
+                width = rs.getInt("width");
+                length = rs.getInt("length");
+                height = rs.getInt("height");
+                amountOfBigBricks = rs.getInt("amountOfBigBricks");
+                amountOfMediumBricks = rs.getInt("amountOfMediumBricks");
+                amountOfSmallBricks = rs.getInt("amountOfSmallBricks");
+                numberOfDoors = rs.getInt("numberOfDoor");
+                numberOfWindows = rs.getInt("numberOfWindows");
+                price = rs.getInt("price");
+                details = new OrderDetails(orderId, username, width, length, height, amountOfBigBricks, amountOfMediumBricks, amountOfSmallBricks, numberOfDoors, numberOfWindows, price);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(orderDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return details;
+    }
+}    

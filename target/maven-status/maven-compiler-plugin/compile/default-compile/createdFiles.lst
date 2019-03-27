@@ -2,6 +2,7 @@ Data\orderDAO.class
 Data\BigLegoBrick.class
 Data\LegoDoor.class
 Data\testUserDAO.class
+Data\Order.class
 Data\MediumLegoBrick.class
 Logic\orderController.class
 Presentation\makeOrderCommand.class
@@ -12,13 +13,12 @@ Logic\LegoBricksCalculator.class
 Presentation\UnknownCommand.class
 Presentation\LoginCommand.class
 Presentation\RegisterCommand.class
-Data\LegoHouse.class
 Data\User.class
 Presentation\AddMoneyCommand.class
 Presentation\FrontController.class
 Data\DBConnector.class
+Data\OrderDetails.class
 Data\LegoBrick.class
-Logic\LegoHouseMaterials.class
 Logic\RegisterController.class
 Presentation\Command.class
 Logic\LoginController.class

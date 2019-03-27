@@ -10,9 +10,10 @@
 <% User user = (User) session.getAttribute("user");%>
 
 <% if(user != null) { %>
-<a class="left" href="/legohus2/index.jsp">Front page</a>
-<a class="right" href="/legohus2/increaseBalance.jsp">Insert money</a>
-<a class="right" href="/legohus2/makeOrder.jsp">Make a order</a>
+<a href="/legohus2/index.jsp">Front page</a>
+<a href="/legohus2/increaseBalance.jsp">Insert money</a>
+<a href="/legohus2/makeOrder.jsp">Make a order</a>
+<a href="/legohus2/myOrders.jsp">Show my orders</a>
 <p>Your balance is: <%= user.getBalance()%></p>
 
 <% } else { %>

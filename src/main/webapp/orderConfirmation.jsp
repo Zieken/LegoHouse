@@ -13,6 +13,6 @@
     </head>
     <body>
         <p>Your order went through!</p>
-        <a href="/legohus2/allOrders.jsp">Do you want to see your orders</a>
+        <a href="/legohus2/myOrders.jsp">Do you want to see your orders</a>
     </body>
 </html>

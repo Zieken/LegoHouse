@@ -18,7 +18,16 @@
             <input type="text" name="password" placeholder="password"> <br>
             <input type="submit" value="log in">
             <input type="hidden" name="command" value="login">
-            
         </form>
     </body>
 </html>
+
+<% 
+    if(request.getSession().getAttribute("LoginResult") != null && request.getSession().getAttribute("LoginResult") == "LoginFailed")
+    {
+%>
+<p style="color: red">Login failed, please try again!</p>
+<%
+    }
+    request.getSession().invalidate();
+%>    
